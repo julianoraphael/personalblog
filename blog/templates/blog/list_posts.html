@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>List Posts</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>List Posts</h1>
+    <a class="new-post-button" href="/posts/create/">Novo Post</a>
+    {% for post in posts %}
+      <div class="post">
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.content }}</p>
+        <p class="meta">Posted by {{ post.author }} on {{ post.date }}</p>
+      </div>
+    {% empty %}
+      <p>No posts available.</p>
+    {% endfor %}
+  </div>
+</body>
+</html>
