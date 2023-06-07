@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post
 from .forms import PostForm
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseNotFound
 
 def list_posts(request):
     posts = Post.objects.order_by('-publication_date')
@@ -35,3 +36,6 @@ def create_post(request):
         form = PostForm()
     
     return render(request, 'blog/create_post.html', {'form': form})
+
+def page_not_found(request, exception):
+    return HttpResponseNotFound(render(request, 'blog/error.html', status=404))

@@ -17,6 +17,9 @@ Including another URLconf
 from django.urls import path
 from blog.views import list_posts, detail_post, create_post
 from django.contrib.auth import views as auth_views
+from django.shortcuts import render, get_object_or_404, redirect
+from django.views.defaults import page_not_found
+
 
 urlpatterns = [
     path('', list_posts, name='home'),
@@ -26,3 +29,5 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='blog/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='list_posts'), name='logout'),
 ]
+
+handler404 = 'blog.views.page_not_found'
